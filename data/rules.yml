@@ -1,0 +1,28 @@
+version: "3.1"
+
+# Se define las reglas para conversaciones cortas o respuestas puntuales
+rules:
+    - rule: eres un bot
+      steps:
+          - intent: bot
+          - action: utter_bot
+
+    # - rule: activate form
+    #   steps:
+    #       - intent: llenar_formulario
+    #       - action: utter_llenar_formulario
+    #       - action: datos_form
+    #       - active_loop: datos_form
+
+    # Regla para cuando el formulario se haya completado
+    # - rule: submit form
+    #   condition:
+    #       - active_loop: datos_form
+    #   steps:
+    #       # CUando se desactiva
+    #       - action: datos_form
+    #       - active_loop: null
+    #       - slot_was_set:
+    #             - requested_slot: null
+    #       # Acciones a ejecutar para el submit
+    #       - action: action_submit
