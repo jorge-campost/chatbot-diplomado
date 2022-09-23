@@ -5,6 +5,8 @@ services:
     container_name: rasa
     ports:
       - 5005:5005
+    networks:
+      - frontend
     volumes:
       - ./:/app
     command: ["run", "-m", "models", "--enable-api",  "--debug", "--endpoints","endpoints.yml", "--cors","*"]
@@ -12,5 +14,10 @@ services:
   app:
     image: chatbot-actions
     container_name: rasa_actions
+    networks:
+      - frontend
     ports:
       - 5055:5055
+
+networks:
+    frontend:
