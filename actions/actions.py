@@ -119,7 +119,7 @@ class ActionMostrarExperiencias(Action):
         }
         # Obtener la entidad identificada
         current_entity = next(
-            tracker.get_latest_entity_values("actividad"), None)
+            tracker.get_latest_entity_values("experiencia"), None)
 
         # Si el paisaje no se encuentra en la lista, omitir ya que la api fallaría
         if current_entity not in list(labels.keys()):
@@ -145,5 +145,5 @@ class ActionMostrarExperiencias(Action):
                 return []
 
         dispatcher.utter_message(
-            text="Lo siento no hemos encontrado lo que estás buscando")
+            text="Lo siento no hemos encontrado lo que estás buscando.")
         return []

@@ -1,13 +1,6 @@
 version: "3.1"
 
 nlu:
-    - intent: bot
-      examples: |
-          - eres un bot?
-          - quien eres?
-          - eres un asistente virtual?
-          - eres una persona o un bot?
-
     - intent: saludo
       examples: |
           - Hey
@@ -16,6 +9,17 @@ nlu:
           - buenas tardes
           - buenos días
           - buenas noches
+
+    - intent: despedida
+      examples: |
+          - hasta luego
+          - hasta nunca
+          - adiós
+          - adios
+          - hasta mañana
+          - chao
+          - chau
+          - ten buen día
 
     - intent: opcion_recomendar_destino
       examples: |
@@ -30,30 +34,6 @@ nlu:
           - que tipo de destinos hay?
           - que tipos de destinos hay disponibles?
           - que destinos disponibles tienes
-
-    - intent: opcion_como_llegar
-      examples: |
-          - quiero saber como llegar
-          - como llegar
-          - como llegar a una ciudad
-          - no sé como llegar a un departamento
-          - quiero llegar a un lugar del Perú
-          - como se llega a Cusco
-          - cómo puedo ir a Amazonas
-          - como llegar a un destino
-          - como llegar destino
-
-    - intent: opcion_experiencias
-      examples: |
-          - busco información por experiencias
-          - que experiencias tienen
-          - que experiencias hay disponibles
-          - quiero info por experiencias
-          - quiero informarme acerca de las experiencias
-          - realizar experiencias
-          - vivir experiencias
-          - quiero experiencias nuevas
-          - quiero experimentar
 
     - intent: buscar_destino
       examples: |
@@ -89,49 +69,26 @@ nlu:
           - selva
           - valle
 
-    - lookup: departamento
+    - intent: opcion_experiencias
       examples: |
-          - Amazonas
-          - Ancash
-          - Arequipa
-          - Cusco
-          - Ica
-          - La libertad
-          - Lambayeque
-          - Lima
-          - Loreto
-          - Madre de Dios
-          - Piura
-          - Puno
-          - San Martin
-          - Tumbes
-
-    - intent: como_llegar
-      examples: |
-          - ir al [Cusco](departamento)
-          - como llegar a [Lima](departamento)
-          - como se llega a [Amazonas](departamento)
-          - como ir a [Tumbes](departamento)
-          - como ir a [la libertad](departamento)
-          - ir a [Cusco](departamento)
-          - como llegar al [Cusco](departamento)
-          - ir al [Puno](departamento)
-          - ir a [Ucayali](departamento)
-          - [Tumbes](departamento)
-          - ir a [loreto](departamento)
-          - ¿cómo llegar a [Ancash](departamento)?
-          - ¿cómo llegar a [Arequipa](departamento)?
-          - ¿cómo llegar a [Cusco](departamento)?
-          - ¿cómo llegar a [Ica](departamento)?
-          - ¿cómo llegar a [La libertad](departamento)?
-          - ¿cómo llegar a [Lambayeque](departamento)?
-          - ¿cómo llegar a [Lima](departamento)?
-          - ¿cómo llegar a [Loreto](departamento)?
-          - ¿cómo llegar a [Madre de Dios](departamento)?
-          - ¿cómo llegar a [Piura](departamento)?
-          - ¿cómo llegar a [Puno](departamento)?
-          - ¿cómo llegar a [San Martin](departamento)?
-          - ¿cómo llegar a [Tumbes](departamento)?
+          - buscar información experiencias
+          - busco cosas por experiencias
+          - busco experiencias para visitar
+          - busco información de experiencias
+          - busco informes sobre experiencias
+          - realizar nuevas experiencias
+          - quiero ver la opciones de experiencias
+          - muestra las opciones de experiencias
+          - muestras las experiencias disponibles
+          - busco información por experiencias
+          - que experiencias tienen
+          - que experiencias hay disponibles
+          - quiero info por experiencias
+          - quiero informarme acerca de las experiencias
+          - realizar experiencias
+          - vivir experiencias
+          - quiero experiencias nuevas
+          - quiero experimentar
 
     - intent: mostrar_experiencias
       examples: |
@@ -157,33 +114,3 @@ nlu:
           - naturaleza
           - aventura
           - entretenimiento
-
-    - intent: despedida
-      examples: |
-          - hasta luego
-          - hasta nunca
-          - adiós
-          - adios
-          - hasta mañana
-          - chao
-          - chau
-          - ten buen día
-
-    - intent: llenar_formulario
-      examples: |
-          - completar el formulario
-          - formulario
-          - quiero completar los datos
-          - completar los datos
-          - llenar formulario
-          - llenar datos
-
-    - intent: indicar_nombre
-      examples: |
-          - mi nombres es [Jorge](nombre)
-          - soy [Manuel](nombre)
-          - yo me llamo [Jesus](nombre)
-          - soy [ricardo](nombre)
-          - [Luis](nombre) es mi nombre
-          - [Andres](nombre)
-          - [estefano](nombre)

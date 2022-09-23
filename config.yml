@@ -8,6 +8,7 @@ language: es
 
 pipeline:
     - name: WhitespaceTokenizer
+    - name: EntitySynonymMapper
     - name: RegexFeaturizer
     - name: LexicalSyntacticFeaturizer
     - name: CountVectorsFeaturizer
@@ -18,7 +19,6 @@ pipeline:
     - name: DIETClassifier
       epochs: 100
       constrain_similarities: true
-
 
 policies:
     - name: MemoizationPolicy

@@ -3,9 +3,6 @@ version: "3.1"
 stories:
     - story: path_recomendar_destino
       steps:
-          - intent: saludo
-          - action: utter_saludo
-          - action: utter_mostrar_opciones
           - intent: opcion_recomendar_destino
           - action: utter_recomendar_destino
           - intent: buscar_destino
@@ -13,42 +10,11 @@ stories:
           - intent: despedida
           - action: utter_despedida
 
-    # - story: path_como_llegar
-    #   steps:
-    #       - intent: saludo
-    #       - action: utter_saludo
-    #       - action: utter_mostrar_opciones
-    #       - intent: opcion_como_llegar
-    #       - action: utter_como_llegar
-    #       - intent: como_llegar
-    #       - action: action_como_llegar
-    #       - intent: despedida
-    #       - action: utter_despedida
-
-    # - story: path_experiencias
-    #   steps:
-    #       - intent: saludo
-    #       - action: utter_saludo
-    #       - action: utter_mostrar_opciones
-    #       - intent: opcion_experiencias
-    #       - action: utter_experiencias
-    #       - intent: mostrar_experiencias
-    #       - action: action_mostrar_experiencias
-    #       - intent: despedida
-    #       - action: utter_despedida
-
-    # Ejemplo de formulario
-#     - story: path formulario
-#       steps:
-#           - intent: llenar_formulario
-#           - action: utter_llenar_formulario
-#           - action: datos_form
-#           - active_loop: datos_form
-#           - slot_was_set:
-#                 - requested_slot: nombre
-#           - slot_was_set:
-#                 - requested_slot: null
-#           - active_loop: null
-#           - action: action_submit
-#           - intent: despedida
-#           - action: utter_despedida
+    - story: path_experiencias
+      steps:
+          - intent: opcion_experiencias
+          - action: utter_experiencias
+          - intent: mostrar_experiencias
+          - action: action_mostrar_experiencias
+          - intent: despedida
+          - action: utter_despedida
