@@ -1,22 +1,24 @@
 version: '3.0'
 services:
   rasa:
-    image: rasa/rasa:3.2.9-full
-    container_name: rasa
-    ports:
+      image: rasa/rasa:3.2.9-full
+      container_name: rasa-server
+      ports:
       - 5005:5005
-    networks:
+      networks:
       - frontend
-    volumes:
-      - ./:/app
-    command: ["run", "-m", "models", "--enable-api",  "--debug", "--endpoints","endpoints.yml", "--cors","*"]
+      volumes:
+      - ./chatbot-diplomado:/app
+      command: ["run", "-m", "models", "--enable-api",  "--endpoints","endpoints.yml", "--cors","*"]
+      depends_on:
+          - app
 
   app:
-    image: chatbot-actions
-    container_name: rasa_actions
-    networks:
+      image: chatbot-actions
+      container_name: rasa-actions
+      networks:
       - frontend
-    ports:
+      ports:
       - 5055:5055
 
 networks:
