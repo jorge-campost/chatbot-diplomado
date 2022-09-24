@@ -10,12 +10,16 @@ WORKDIR /app
 # Change back to root user to install dependencies
 USER root
 
+RUN pip install transformers[torch]
 # Install extra requirements for actions code, if necessary (uncomment next line)
 # RUN pip install -r requirements-actions.txt
 
 # Copy actions folder to working directory
 COPY ./actions /app/actions
 COPY ./api /app/api
+
+RUN mkdir  /.cache
+RUN chmod 777 /.cache
 
 # By best practices, don't run the code with root user
 USER 1001

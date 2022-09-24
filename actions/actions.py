@@ -6,6 +6,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from api.turismo import TurismoAPI
 
+from actions.zero_shoot import zeroShot
 
 departamentos = [
     'Amazonas', 'Ancash', 'Apurímac', 'Arequipa', 'Ayacucho', 'Cajamarca', 'Callao', 'Cusco', 'Huancavelica',
@@ -42,6 +43,12 @@ class ActionBuscarDestino(Action):
         # Obtener la entidad identificada
         current_entity = next(
             tracker.get_latest_entity_values("destino"), None)
+
+        
+        # Si no se ha identificado una entidad, intentar con ZeroShoot
+        if not current_entity:
+            current_entity = zeroShot(tracker.current_state()[
+                                      'latest_message']['text'], list(labels.keys()))
 
         # Si el paisaje no se encuentra en la lista, omitir ya que la api fallaría
         if current_entity not in list(labels.keys()):
