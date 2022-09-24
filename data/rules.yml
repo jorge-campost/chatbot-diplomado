@@ -1,3 +1,38 @@
 version: "3.1"
 
+rules:
+    - rule: activate form
+      steps:
+          - intent: opcion_suscribirse
+          - action: utter_suscribirse
+          - action: suscribirse_form
+          - active_loop: suscribirse_form
 
+    - rule: como llegar
+      steps:
+          - intent: como_llegar
+          - action: action_como_llegar
+
+    - rule: recomendar destino
+      steps:
+          - intent: buscar_destino
+          - action: action_buscar_destino
+
+    # Regla para cuando el formulario se haya completado
+    - rule: submit form
+      condition:
+          - active_loop: suscribirse_form
+      steps:
+          # CUando se desactiva
+          - action: suscribirse_form
+          - active_loop: null
+          - slot_was_set:
+                - requested_slot: null
+          # Acciones a ejecutar para el submit
+          - action: action_submit
+
+    - rule: solicita ayuda
+      steps:
+          - intent: quiero_ayuda
+          - action: utter_mostrar_opciones
+          - action: utter_ayuda

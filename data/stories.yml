@@ -3,18 +3,38 @@ version: "3.1"
 stories:
     - story: path_recomendar_destino
       steps:
+          - intent: saludo
+          - action: utter_saludo
+          - action: utter_mostrar_opciones
           - intent: opcion_recomendar_destino
           - action: utter_recomendar_destino
           - intent: buscar_destino
           - action: action_buscar_destino
-          - intent: despedida
-          - action: utter_despedida
 
-    - story: path_experiencias
+    - story: path_como_llegar
       steps:
-          - intent: opcion_experiencias
-          - action: utter_experiencias
-          - intent: mostrar_experiencias
-          - action: action_mostrar_experiencias
-          - intent: despedida
-          - action: utter_despedida
+          - intent: saludo
+          - action: utter_saludo
+          - action: utter_mostrar_opciones
+          - intent: opcion_como_llegar
+          - action: utter_como_llegar
+          - intent: como_llegar
+          - action: action_como_llegar
+
+    - story: path_suscribirse
+      steps:
+          - intent: saludo
+          - action: utter_saludo
+          - action: utter_mostrar_opciones
+          - intent: opcion_suscribirse
+          - action: utter_suscribirse
+          - action: suscribirse_form
+          - active_loop: suscribirse_form
+          - slot_was_set:
+                - requested_slot: nombre
+          - slot_was_set:
+                - requested_slot: email
+          - slot_was_set:
+                - requested_slot: null
+          - active_loop: null
+          - action: action_submit

@@ -5,12 +5,17 @@ intents:
     - despedida
     - opcion_recomendar_destino
     - buscar_destino
-    - opcion_experiencias
-    - mostrar_experiencias
+    - elegir_destino
+    - opcion_suscribirse
+    - opcion_como_llegar
+    - como_llegar
+    - quiero_ayuda
 
 entities:
     - destino
-    - experiencia
+    - departamento
+    - nombre
+    - email
 
 slots:
     destino:
@@ -19,17 +24,37 @@ slots:
         mappings:
             - type: from_entity
               entity: destino
-    experiencia:
+    departamento:
         type: text
         influence_conversation: true
         mappings:
             - type: from_entity
-              entity: experiencia
+              entity: departamento
+    nombre:
+        type: text
+        mappings:
+            - type: from_entity
+              entity: nombre
+              conditions:
+                  - active_loop: suscribirse_form
+    email:
+        type: text
+        mappings:
+            - type: from_entity
+              entity: email
+              conditions:
+                  - active_loop: suscribirse_form
+
+forms:
+    suscribirse_form:
+        required_slots:
+            - nombre
+            - email
 
 responses:
     utter_saludo:
         - text: Hola! Gusto saludarte.
-        - text: Buen día. Bienvenido a PERÚ TRAVEL!
+        - text: Buen día. Bienvenido a PERÚ TRAVEL!!!
         - text: Hola! ¿Cómo podemos ayudarte?
 
     utter_despedida:
@@ -39,17 +64,33 @@ responses:
         - text: Un gusto poder ayudarle. Adiós.
         - text: Hasta luego.
 
-    utter_preguntar_destino:
-        - text: "¿Qué tipo de destinos quieres conocer? (Por ejemplo: desierto, playa, selva, etc)."
     utter_mostrar_opciones:
-        - text: "Cuéntanos que necesitas. Podemos ayudarte con:\n- Buscar información por tipo de destino\n- Buscar información por experiencias\n- Cómo llegar a un destino"
+        - text: "Cuéntanos que necesitas. Podemos ayudarte con:\n- Recomendaciones de destinos\n- Cómo llegar a un destino\n- Suscribirte a nuestro boletín mensual"
 
     utter_recomendar_destino:
         - text: "Por favor, indícanos en qué tipo de destino estás interesado:\n- desierto\n- playa\n- selva\n- valle\n- montaña"
 
-    utter_experiencias:
-        - text: "Por favor, indícanos en qué tipo de experiencias estás interesado:\n- históricos\n- cultural\n- gastronomía\n- vivencial\n- naturaleza\n- aventura\n- entretenimiento"
+    utter_suscribirse:
+        - text: Para suscribirte, necesitamos que nos brindes algunos datos.
+
+    utter_ask_nombre:
+        - text: ¿Cuál es tu nombre?
+
+    utter_ask_email:
+        - text: ¿Cuál es tu correo electrónico?
+
+    utter_como_llegar:
+        - text: "Por indícanos a qué departamento del Perú quieres ir."
+
+    utter_ayuda:
+        - text: "También puedes contactarnos a nuestro número 555-1245.\nTe recomendamos visitar nuestras redes sociales para tener lo último de nuestras promociones y eventos."
 
 actions:
     - action_buscar_destino
-    - action_mostrar_experiencias
+    - action_como_llegar
+    - action_action_formulario
+    - action_submit
+
+session_config:
+    session_expiration_time: 60
+    carry_over_slots_to_new_session: true

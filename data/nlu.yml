@@ -24,6 +24,7 @@ nlu:
     - intent: opcion_recomendar_destino
       examples: |
           - recomienda destinos
+          - recomendar destinos
           - recomiéndame algún lugar para ir
           - no se qué destino elegir
           - cuales son los mejores destinos
@@ -69,48 +70,112 @@ nlu:
           - selva
           - valle
 
-    - intent: opcion_experiencias
+    - intent: opcion_suscribirse
       examples: |
-          - buscar información experiencias
-          - busco cosas por experiencias
-          - busco experiencias para visitar
-          - busco información de experiencias
-          - busco informes sobre experiencias
-          - realizar nuevas experiencias
-          - quiero ver la opciones de experiencias
-          - muestra las opciones de experiencias
-          - muestras las experiencias disponibles
-          - busco información por experiencias
-          - que experiencias tienen
-          - que experiencias hay disponibles
-          - quiero info por experiencias
-          - quiero informarme acerca de las experiencias
-          - realizar experiencias
-          - vivir experiencias
-          - quiero experiencias nuevas
-          - quiero experimentar
+          - suscribirse
+          - suscrito
+          - me interesa suscribirme
+          - suscribirse al boletin 
+          - suscripción al boletín
+          - me interesa suscribirme
 
-    - intent: mostrar_experiencias
+    - intent: opcion_como_llegar
       examples: |
-          - me gustaría visitar sitios [histórico](experiencia)
-          - me gusta la [natural]{"entity": "experiencia", "value":"naturaleza"}
-          - me encanta la [historia]{"entity":"experiencia", "value:":"histórico"}
-          - me interesan los sitios [histórico](experiencia)
-          - quisiera disfrutar de una buena [comida](experiencia)
-          - quisiera hacer deportes de [aventura](experiencia)
-          - quisiera practicar deportes de [aventura](experiencia)
-          - quisiera disfrutar de la [naturaleza](experiencia)
-          - estoy interesado en alguna experiencia de [entretenimiento](experiencia)
-          - me interesa hacer turismo [vivencial](experiencia)
-          - me gustaría visitar algun lugar [exclusivo](experiencia)
+          - quiero saber como llegar
+          - como llegar
+          - como llegar a una ciudad
+          - no sé como llegar a un departamento
+          - quiero llegar a un lugar del Perú
+          - como se llega a Cusco
+          - cómo puedo ir a Amazonas
+          - como llegar a un destino
+          - como llegar destino
 
-    - lookup: experiencia
+    - intent: como_llegar
       examples: |
-          - histórico
-          - cultural
-          - exclusivo 
-          - gastronomía
-          - vivencial
-          - naturaleza
-          - aventura
-          - entretenimiento
+          - quiero ir a [tumbes](departamento)
+          - ir a [apurimac](departamento)
+          - ir al [Cusco](departamento)
+          - como llegar a [Lima](departamento)
+          - como se llega a [Amazonas](departamento)
+          - como ir a [Tumbes](departamento)
+          - como ir a [la libertad](departamento)
+          - ir a [Cusco](departamento)
+          - como llegar al [Cusco](departamento)
+          - ir al [Puno](departamento)
+          - ir a [Ucayali](departamento)
+          - [Tumbes](departamento)
+          - ir a [loreto](departamento)
+          - ¿cómo llegar a [Ancash](departamento)?
+          - ¿cómo llegar a [Arequipa](departamento)?
+          - ¿cómo llegar a [Cusco](departamento)?
+          - ¿cómo llegar a [Ica](departamento)?
+          - ¿cómo llegar a [La libertad](departamento)?
+          - ¿cómo llegar a [Lambayeque](departamento)?
+          - ¿cómo llegar a [Lima](departamento)?
+          - ¿cómo llegar a [Loreto](departamento)?
+          - ¿cómo llegar a [Madre de Dios](departamento)?
+          - ¿cómo llegar a [Piura](departamento)?
+          - ¿cómo llegar a [Puno](departamento)?
+          - ¿cómo llegar a [San Martin](departamento)?
+          - ¿cómo llegar a [Tumbes](departamento)?
+
+    - lookup: departamento
+      examples: |
+          - Amazonas
+          - Ancash
+          - Apurimac
+          - Arequipa
+          - Ayacucho
+          - Cajamarca
+          - Callao
+          - Cusco
+          - Huancavelica
+          - Huánuco
+          - Ica
+          - Junín
+          - La libertad
+          - Lambayeque
+          - Lima
+          - Loreto
+          - Madre de Dios
+          - Moquegua
+          - Pasco
+          - Piura
+          - Puno
+          - San Martin
+          - Tacna
+          - Tumbes
+          - Ucayali
+
+    - intent: indicar_nombre
+      examples: |
+          - me llamo [marco](nombre)
+          - soy [jesus](nombre)
+          - mi nombre es [Jorge](nombre)
+          - soy [Manuel](nombre)
+          - yo me llamo [Jesus](nombre)
+          - soy [ricardo](nombre)
+          - [Luis](nombre) es mi nombre
+          - [Andres](nombre)
+          - [estefano](nombre)
+          - soy [pedro](nombre)
+          - mi nombre es [Mariano](nombre)
+          - me llamo [antonio](nombre)
+
+    - intent: indicar_email
+      examples: |
+          - mi email es [jorge@gmail.com](email)
+          - el correo electrónico es [nombre@dominio.com.pe](email)
+          - [abcdxyz@hotmail.es](email)
+          - [xyz.123@mail.com.es](email)
+          - el correo es [nombre.apellido@outlook.es](email)
+
+    - intent: quiero_ayuda
+      examples: |
+          - quiero ayuda
+          - me pueden ayudar?
+          - quien atiende?
+          - necesito información?
+          - que servicios brindan?
+          - ayuda

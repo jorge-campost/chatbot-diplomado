@@ -3,12 +3,14 @@ from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-
+from rasa_sdk.events import SlotSet
 from api.turismo import TurismoAPI
 
 
-ciudades = ["Amazonas", "Ancash", "Arequipa", "Cusco", "Ica", "La libertad", "Lambayeque",
-            "Lima", "Loreto", "Madre de Dios", "Piura", "Puno", "San Martin", "Tumbes"]
+departamentos = [
+    'Amazonas', 'Ancash', 'Apurímac', 'Arequipa', 'Ayacucho', 'Cajamarca', 'Callao', 'Cusco', 'Huancavelica',
+    'Huánuco', 'Ica', 'Junín', 'La libertad', 'Lambayeque', 'Lima', 'Loreto', 'Madre de Dios', 'Moquegua',
+    'Pasco', 'Piura', 'Puno', 'San Martin', 'Tacna', 'Tumbes', 'Ucayali']
 
 api = TurismoAPI()
 
@@ -68,8 +70,24 @@ class ActionSubmit(Action):
         return 'action_submit'
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message(text="Formulario completado")
-        return []
+
+        nombre = tracker.get_slot('nombre')
+        email = tracker.get_slot('email')
+
+        if not nombre:
+            dispatcher.utter_message(
+                text="Hubo un error al registrar el nombre. Por favor, intente nuevamente.")
+            return []
+
+        if not email:
+            dispatcher.utter_message(
+                text='Hubo un error al registrar el email. Por favor, intente nuevamente.')
+            return []
+
+        dispatcher.utter_message(
+            text=f'Genial {nombre}! Te enviaremos nuestro boletín al correo {email} todos los meses.')
+        dispatcher.utter_message(text='Gracias por contactarnos.')
+        return [SlotSet('nombre', None), SlotSet('email', None)]
 
 
 class ActionComoLlegar(Action):
@@ -81,14 +99,14 @@ class ActionComoLlegar(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        entity_ciudad = next(
+        entity_departamento = next(
             tracker.get_latest_entity_values("departamento"), None)
 
-        if entity_ciudad and entity_ciudad.lower() not in [x.lower() for x in ciudades]:
-            entity_ciudad = None
+        if entity_departamento and entity_departamento.lower() not in [x.lower() for x in departamentos]:
+            entity_departamento = None
 
-        if entity_ciudad:
-            result = api.how_to_get_to_city(entity_ciudad)
+        if entity_departamento:
+            result = api.how_to_get_to_city(entity_departamento)
             if result:
                 dispatcher.utter_message(text=result)
                 return []
